@@ -1,124 +1,115 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Мой стартовый портал</title>
-  <meta name="description" content="Быстрые ссылки на популярные сайты с иконками." />
-  <link rel="preconnect" href="https://www.google.com" crossorigin>
+  <title>Chonky Browser Start</title>
   <style>
-    :root{
-      --bg: #0f1115;
-      --card: #171a21;
-      --text: #e9eef5;
-      --muted:#a7b0bd;
-      --brand:#6ea8fe;
-      --ring: rgba(110,168,254,.35);
+    :root {
+      --bg:#0f1115; --card:#171a21; --text:#e9eef5;
+      --muted:#a7b0bd; --ring:rgba(110,168,254,.35);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:linear-gradient(180deg,#0f1115 0%, #121621 100%);
-      color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      -webkit-font-smoothing:antialiased; line-height:1.45;
-      display:flex; flex-direction:column; gap:24px; padding:24px;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body {
+      font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      padding:20px;
     }
-    header{
-      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    header {
+      text-align:center;
+      margin-bottom:20px;
     }
-    .logo{
-      width:56px; height:56px; border-radius:16px; overflow:hidden;
-      display:grid; place-items:center; background:#10131a; border:1px solid #1f2430;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.03);
+    header img {
+      max-width:120px;
+      image-rendering:pixelated;
     }
-    .logo img{width:100%; height:100%; object-fit:cover; display:block}
-    h1{
-      margin:0; font-size:clamp(20px,2.4vw,28px); letter-spacing:.2px;
+    /* Поисковая строка */
+    .bar {
+      display:flex; gap:10px; align-items:center; background:var(--card);
+      border:1px solid #202633; border-radius:16px; padding:10px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+      max-width:600px;
+      margin:0 auto 20px auto;
     }
-    .sub{color:var(--muted); font-size:14px}
-    .grid{
-      --cols: 2;
-      display:grid; gap:14px;
-      grid-template-columns: repeat(var(--cols), minmax(0,1fr));
+    .bar input[type="text"] {
+      flex:1; height:44px; border-radius:12px; border:1px solid #252b38;
+      background:#0f1420; color:var(--text); padding:0 14px; font-size:16px; outline:none;
     }
-    @media (min-width:560px){ .grid{ --cols: 3; } }
-    @media (min-width:820px){ .grid{ --cols: 4; } }
-    @media (min-width:1120px){ .grid{ --cols: 6; } }
-
-    .tile{
-      position:relative; display:flex; align-items:center; gap:12px;
-      padding:12px 14px; background:var(--card); border-radius:16px;
-      text-decoration:none; color:var(--text); border:1px solid #202633;
-      transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
-      will-change: transform;
+    .bar input[type="text"]:focus {
+      box-shadow:0 0 0 4px var(--ring); border-color:#2b3446;
     }
-    .tile:focus-visible{ outline:none; box-shadow: 0 0 0 4px var(--ring); }
-    .tile:hover{ transform: translateY(-2px); border-color:#2c3647; background:#181d27; }
-    .ico{
-      width:28px; height:28px; border-radius:8px; background:#0f1420;
-      display:grid; place-items:center; overflow:hidden; flex:0 0 auto;
-      border:1px solid #202633;
+    .bar button {
+      height:44px; padding:0 16px; border-radius:12px;
+      border:1px solid #2a3550; background:#2a62ff; color:#fff; font-weight:600;
+      cursor:pointer;
     }
-    .ico img{ width:18px; height:18px; display:block }
-    .label{ display:flex; flex-direction:column; gap:2px; }
-    .name{ font-weight:600; font-size:15px; letter-spacing:.2px; }
-    .url{ color:var(--muted); font-size:12px; }
-    footer{ margin-top:auto; color:var(--muted); font-size:12px; text-align:center; opacity:.9 }
+    /* Плитки ссылок */
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+      gap:20px;
+      margin-top:20px;
+    }
+    .tile {
+      background:var(--card);
+      padding:10px;
+      border-radius:12px;
+      text-align:center;
+      text-decoration:none;
+      color:var(--text);
+      transition:transform 0.2s;
+    }
+    .tile:hover {transform:scale(1.05)}
+    .tile img {
+      width:48px;
+      height:48px;
+      margin-bottom:8px;
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <!-- ЗАМЕНИ путь к логотипу на свой PNG -->
-    <div class="logo">
-      <!-- Пример: src="https://i.imgur.com/gdzedi2.png" -->
-      <img src="https://i.imgur.com/gdzedi2.png" alt="Логотип" />
-    </div>
-    <div>
-      <h1>Быстрый старт</h1>
-      <div class="sub">Популярные сайты в один тап</div>
-    </div>
+    <!-- Здесь вставь свой логотип PNG -->
+    <img src="logo.png" alt="Chonky Browser Logo">
+    <h1>Chonky Browser</h1>
   </header>
 
-  <main class="grid" aria-label="Популярные сайты">
-    <!--
-      Иконки тянем у Google Favicons API:
-      https://www.google.com/s2/favicons?sz=64&domain=ДОМЕН
-      Добавляй/меняй карточки по образцу.
-    -->
+  <!-- Поиск Google -->
+  <form class="bar" action="https://www.google.com/search" method="GET" target="_self">
+    <input type="text" name="q" placeholder="Искать в Google..." autocomplete="on" spellcheck="false">
+    <input type="hidden" name="hl" value="ru">
+    <button type="submit">Поиск</button>
+  </form>
 
-    <a class="tile" href="https://www.google.com/" target="_blank" rel="noopener">
-      <span class="ico"><img alt="" src="https://www.google.com/s2/favicons?sz=64&domain=google.com"></span>
-      <span class="label"><span class="name">Google</span><span class="url">google.com</span></span>
+  <!-- Плитки популярных сайтов -->
+  <div class="grid">
+    <a class="tile" href="https://www.google.com" target="_self">
+      <img src="https://www.google.com/favicon.ico" alt="Google">
+      <div>Google</div>
     </a>
-
-    <a class="tile" href="https://www.wikipedia.org/" target="_blank" rel="noopener">
-      <span class="ico"><img alt="" src="https://www.google.com/s2/favicons?sz=64&domain=wikipedia.org"></span>
-      <span class="label"><span class="name">Wikipedia</span><span class="url">wikipedia.org</span></span>
+    <a class="tile" href="https://www.wikipedia.org" target="_self">
+      <img src="https://www.wikipedia.org/static/favicon/wikipedia.ico" alt="Wikipedia">
+      <div>Wikipedia</div>
     </a>
-
-    <a class="tile" href="https://yandex.ru/" target="_blank" rel="noopener">
-      <span class="ico"><img alt="" src="https://www.google.com/s2/favicons?sz=64&domain=yandex.ru"></span>
-      <span class="label"><span class="name">Yandex</span><span class="url">yandex.ru</span></span>
+    <a class="tile" href="https://yandex.ru" target="_self">
+      <img src="https://yandex.ru/favicon.ico" alt="Yandex">
+      <div>Yandex</div>
     </a>
-
-    <a class="tile" href="https://www.youtube.com/" target="_blank" rel="noopener">
-      <span class="ico"><img alt="" src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com"></span>
-      <span class="label"><span class="name">YouTube</span><span class="url">youtube.com</span></span>
+    <a class="tile" href="https://www.youtube.com" target="_self">
+      <img src="https://www.youtube.com/favicon.ico" alt="YouTube">
+      <div>YouTube</div>
     </a>
-
-    <a class="tile" href="https://github.com/" target="_blank" rel="noopener">
-      <span class="ico"><img alt="" src="https://www.google.com/s2/favicons?sz=64&domain=github.com"></span>
-      <span class="label"><span class="name">GitHub</span><span class="url">github.com</span></span>
+    <a class="tile" href="https://vk.com" target="_self">
+      <img src="https://vk.com/favicon.ico" alt="VK">
+      <div>VK</div>
     </a>
-
-    <a class="tile" href="https://stackoverflow.com/" target="_blank" rel="noopener">
-      <span class="ico"><img alt="" src="https://www.google.com/s2/favicons?sz=64&domain=stackoverflow.com"></span>
-      <span class="label"><span class="name">Stack Overflow</span><span class="url">stackoverflow.com</span></span>
+    <a class="tile" href="https://twitter.com" target="_self">
+      <img src="https://abs.twimg.com/favicons/twitter.ico" alt="Twitter">
+      <div>Twitter</div>
     </a>
+  </div>
 
-    <a class="tile" href="https://maps.google.com/" target="_blank" rel="noopener">
-      <span class="ico"><img alt="" src="https://www.google.com/s2/favicons?sz=64&domain=maps.google.com"></span>
-      <span class="label"><span class="name">Google Maps</span><span class="url">maps.google.com</span></span>
-    </a>
-
-    <
+</body>
+</html>
